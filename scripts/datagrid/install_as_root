@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+SCRIPTS_DIR=/tmp/artifacts
+DISTRIBUTION_ZIP="jboss-datagrid-6.5.1-server.zip"
+DATAGRID_VERSION="6.5.1"
+CVE_PATCH="BZ-1281510.zip"
+
+unzip -q $SCRIPTS_DIR/$DISTRIBUTION_ZIP
+unzip -q -o $SCRIPTS_DIR/${CVE_PATCH}
+mv jboss-datagrid-$DATAGRID_VERSION-server $JBOSS_HOME
+
+chmod 0755 $JBOSS_HOME
+chown -R jboss:jboss $JBOSS_HOME
+
+# Enhance standalone.sh to make remote JAVA debugging possible by specifying
+# DEBUG=true environment variable
+sed -i 's|DEBUG_MODE=false|DEBUG_MODE="${DEBUG:-false}"|' $JBOSS_HOME/bin/standalone.sh
+sed -i 's|DEBUG_PORT="8787"|DEBUG_PORT="${DEBUG_PORT:-8787}"|' $JBOSS_HOME/bin/standalone.sh
