@@ -12,7 +12,8 @@ unzip -q -o $SCRIPTS_DIR/${CVE_PATCH}
 mv jboss-datagrid-$DATAGRID_VERSION-server $JBOSS_HOME
 
 chmod 0755 $JBOSS_HOME
-chown -R jboss:jboss $JBOSS_HOME
+chown -R jboss:root $JBOSS_HOME
+chmod -R g+rwX $JBOSS_HOME
 
 # Enhance standalone.sh to make remote JAVA debugging possible by specifying
 # DEBUG=true environment variable
