@@ -1,4 +1,5 @@
 name: "jboss-datagrid-6/datagrid65"
+description: "Red Hat JBoss Data Grid 6.5 container image"
 version: "6.5.1"
 from: "jboss/openjdk18-rhel7:1.0"
 user: 185
@@ -14,17 +15,16 @@ labels:
       value: "DEBUG_PORT:8787"
       description: "Environment variable used to specify the debug port.  If not set, the default EAP debug port will be used (8787).  Only applicable when development mode is enabled."
 envs:
-    information:
-        - name: "LAUNCH_JBOSS_IN_BACKGROUND"
-          value: "true"
-        - name: "JBOSS_PRODUCT"
-          value: "datagrid"
-        - name: "JBOSS_DATAGRID_VERSION"
-          value: "6.5.1.GA"
-        - name: "PRODUCT_VERSION"
-          value: "6.5.1.GA"
-        - name: "JBOSS_HOME"
-          value: "/opt/datagrid"
+    - name: "LAUNCH_JBOSS_IN_BACKGROUND"
+      value: "true"
+    - name: "JBOSS_PRODUCT"
+      value: "datagrid"
+    - name: "JBOSS_DATAGRID_VERSION"
+      value: "6.5.1.GA"
+    - name: "PRODUCT_VERSION"
+      value: "6.5.1.GA"
+    - name: "JBOSS_HOME"
+      value: "/opt/datagrid"
 ports:
     - value: 8080
 cmd:
@@ -35,9 +35,10 @@ scripts:
     - package: datagrid
       exec: install_as_root
 sources:
-    - url: jboss-datagrid-6.5.1-server.zip
+    - artifact: jboss-datagrid-6.5.1-server.zip
       md5: d0dfebb566ed26dae8b399e3f6d19dad
-    - url: BZ-1281510.zip
+      hint: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=39811&product=data.grid&version=6.5.1&downloadType=distributions"
+    - artifact: BZ-1281510.zip
       md5: c0ee96239a686df1dbe95d9f2cb0e91e
 dogen:
-    version: 2.0.0rc15
+    version: 2.0.0
