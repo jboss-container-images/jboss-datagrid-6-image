@@ -28,7 +28,7 @@ envs:
 ports:
     - value: 8080
     - value: 8787
-      export: false
+      expose: false
 cmd:
     - "/opt/datagrid/bin/standalone.sh"
     - "-b"
@@ -44,7 +44,7 @@ sources:
       md5: c0ee96239a686df1dbe95d9f2cb0e91e
       hint: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=40751&product=data.grid&version=6.5.1&downloadType=securityPatches"
 dogen:
-    version: 2.4.0
+    version: 2.4.1
     plugins:
         dist_git:
             repo: jboss-datagrid-6-docker
