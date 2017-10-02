@@ -1,8 +1,9 @@
+schema_version: 1
+
 name: "jboss-datagrid-6/datagrid65"
 description: "Red Hat JBoss Data Grid 6.5 container image"
 version: "6.5.1"
 from: "jboss/openjdk18-rhel7:1.0"
-user: 185
 labels:
     - name: "org.jboss.deployments-dir"
       value: "/opt/datagrid/standalone/deployments"
@@ -29,24 +30,23 @@ ports:
     - value: 8080
     - value: 8787
       expose: false
-cmd:
-    - "/opt/datagrid/bin/standalone.sh"
-    - "-b"
-    - "0.0.0.0"
-scripts:
-    - package: datagrid
-      exec: install_as_root
-sources:
-    - artifact: jboss-datagrid-6.5.1-server.zip
+modules:
+      install:
+          - name: datagrid
+artifacts:
+    - path: jboss-datagrid-6.5.1-server.zip
+      description: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=39811&product=data.grid&version=6.5.1&downloadType=distributions"
       md5: d0dfebb566ed26dae8b399e3f6d19dad
-      hint: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=39811&product=data.grid&version=6.5.1&downloadType=distributions"
-    - artifact: BZ-1281510.zip
+    - path: BZ-1281510.zip
+      description: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=40751&product=data.grid&version=6.5.1&downloadType=securityPatches"
       md5: c0ee96239a686df1dbe95d9f2cb0e91e
-      hint: "Artifact is available on Customer Portal: https://access.redhat.com/jbossnetwork/restricted/softwareDetail.html?softwareId=40751&product=data.grid&version=6.5.1&downloadType=securityPatches"
-dogen:
-    version: 2.4.3
-    plugins:
-        dist_git:
-            repo: jboss-datagrid-6-docker
+run:
+      user: 185
+      cmd:
+          - "/opt/datagrid/bin/standalone.sh"
+          - "-b"
+          - "0.0.0.0"
+osbs:
+      repository:
+            name: jboss-datagrid-6-docker
             branch: jb-datagrid65
-
