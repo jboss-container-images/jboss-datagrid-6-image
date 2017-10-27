@@ -3,7 +3,7 @@ schema_version: 1
 name: "jboss-datagrid-6/datagrid65"
 description: "Red Hat JBoss Data Grid 6.5 container image"
 version: "6.5.1"
-from: "jboss/openjdk18-rhel7:1.0"
+from: "jboss/openjdk18-rhel7:1.1"
 labels:
     - name: "org.jboss.product"
       value: "datagrid"
