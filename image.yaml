@@ -3,8 +3,14 @@ schema_version: 1
 name: "jboss-datagrid-6/datagrid65"
 description: "Red Hat JBoss Data Grid 6.5 container image"
 version: "6.5.1"
-from: "jboss/openjdk18-rhel7:1.0"
+from: "jboss/openjdk18-rhel7:1.1"
 labels:
+    - name: "org.jboss.product"
+      value: "datagrid"
+    - name: "org.jboss.product.version"
+      value: "6.5.1.GA"
+    - name: "org.jboss.product.datagrid.version"
+      value: "6.5.1.GA"
     - name: "org.jboss.deployments-dir"
       value: "/opt/datagrid/standalone/deployments"
     - name: "com.redhat.deployments-dir"
@@ -28,6 +34,8 @@ envs:
       value: "/opt/datagrid"
 ports:
     - value: 8080
+    - value: 8787
+      expose: false
 modules:
       install:
           - name: datagrid

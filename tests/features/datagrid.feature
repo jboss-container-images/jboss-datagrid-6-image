@@ -1,3 +1,4 @@
+@jboss-datagrid-6/datagrid65
 Feature: Standalone DataGrid tests
   Scenario: Check that the patched commons-collections jar is installed
     When container is ready
